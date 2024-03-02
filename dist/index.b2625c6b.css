@@ -474,4 +474,28 @@ body {
   top: 0;
 }
 
+.attribution {
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+}
+
+.attribution p {
+  font-size: 1.2rem;
+}
+
+@media only screen and (width <= 50em) {
+  .attribution p {
+    font-size: 1.6rem;
+  }
+}
+
+.attribution a {
+  color: var(--medium-gray);
+  text-decoration: none;
+}
+
 /*# sourceMappingURL=index.b2625c6b.css.map */
