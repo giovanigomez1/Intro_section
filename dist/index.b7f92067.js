@@ -1,0 +1,2 @@
+const e=document.querySelector(".nav"),n=e.querySelector(".nav__menu"),t=e.querySelector(".nav__menuicon-open"),o=e.querySelector(".nav__menuicon-close"),c=document.querySelector(".overlay"),s=e=>{t.classList.toggle("hidden"),o.classList.toggle("hidden"),c.classList.toggle("hidden"),n.style.transform=`translateX(${"open"===e?"-":""}100%)`};e.addEventListener("click",function(e){e.target.classList.contains("nav__menuicon-open")&&s("open"),e.target.classList.contains("nav__menuicon-close")&&s("close")});
+//# sourceMappingURL=index.b7f92067.js.map
