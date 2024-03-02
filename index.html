@@ -24,9 +24,10 @@
       </div>
       <div class="nav__menu">
         <ul class="nav__menu--options">
-          <li class="nav__menu--options-ele">
+
+          <li class="nav__menu--options-ele link">            
             <a class="drop__menu" href="#">
-              Features 
+              Features
               <img class="img" src="./images/icon-arrow-up.svg" alt="">
               <img class="img" src="./images/icon-arrow-down.svg" alt="">
             </a>
@@ -47,7 +48,36 @@
               </ul>
             </div>
           </li>
-          <li class="nav__menu--options-ele">
+
+          
+          <li class="nav__menu--options-acc paraghrap">
+            <input type="checkbox" id="features__menu">
+            <label class="features__menu" for="features__menu">
+              <p class="drop__menu">
+                Features
+                <img class="img" src="./images/icon-arrow-up.svg" alt="">
+                <img class="img" src="./images/icon-arrow-down.svg" alt="">
+              </p>
+            </label>
+            <div class="sub features">
+              <ul class="features__sub">
+                <li class="features__sub--ele">
+                  <a href="#"><img src="./images/icon-todo.svg" alt=""> Todo List</a>
+                </li>
+                <li class="features__sub--ele">
+                  <a href="#"><img src="./images/icon-calendar.svg" alt=""> Calendar</a>
+                </li>
+                <li class="features__sub--ele">
+                  <a href="#"><img src="./images/icon-reminders.svg" alt=""> Reminders</a
+                    ></li>
+                <li class="features__sub--ele">
+                  <a href="#"><img src="./images/icon-planning.svg" alt="">Planning</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav__menu--options-ele link">
             <a class="drop__menu" href="#">
               Company 
               <img class="img" src="./images/icon-arrow-up.svg" alt="">
@@ -61,6 +91,27 @@
               </ul>
             </div>
           </li>
+
+          <li class="nav__menu--options-acc paraghrap ">
+            <input type="checkbox" id="company__menu">
+            <label class="company__menu" for="company__menu">
+              <p class="drop__menu">
+                Company 
+                <img class="img" src="./images/icon-arrow-up.svg" alt="">
+                <img class="img" src="./images/icon-arrow-down.svg" alt="">
+              </p>
+            </label>
+            <div class="sub company">
+              <ul class="company__sub">
+                <li class="company__sub--ele"><a href="#">History</a></li>
+                <li class="company__sub--ele"><a href="#">Our Team</a></li>
+                <li class="company__sub--ele"><a href="#">Blog</a></li>
+              </ul>
+            </div>
+          </li>
+
+
+
           <li class="nav__menu--options-ele"><a href="#">Careers</a></li>
           <li class="nav__menu--options-ele"><a href="#">About</a></li>
           
@@ -69,6 +120,10 @@
           <button class="nav__menu--login-log btn">Login</button>
           <button class="nav__menu--login-reg btn">Register</button>
         </div>
+      </div>
+      <div class="nav__menuicon">
+        <img class="nav__menuicon-open" src="./images/icon-menu.svg" alt="">
+        <img class="nav__menuicon-close hidden" src="./images/icon-close-menu.svg" alt="">
       </div>
     </nav>
 
@@ -94,13 +149,15 @@
         
         </div>
         <div class="hero__img">
-          <img src="./images/image-hero-desktop.png" alt="">
+          <!-- <img src="./images/image-hero-mobile.png" alt=""> -->
         </div>
       </section>
     </main>
   
   </div>
+  
 
+  <div class="overlay hidden"></div>
   
 
   <footer class="attribution hidden">

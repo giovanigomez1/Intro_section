@@ -15,14 +15,25 @@ html {
   font-size: 62.5%;
 }
 
+@media only screen and (width <= 75em) {
+  html {
+    font-size: 50%;
+  }
+}
+
 body {
   background-color: var(--almost-white);
   font-family: Epilogue, sans-serif;
+  position: relative;
 }
 
 .container {
   max-width: 122rem;
+  height: 100vh;
   margin: 0 auto;
+  padding: 0;
+  position: relative;
+  overflow-x: hidden;
 }
 
 .container .nav {
@@ -30,22 +41,69 @@ body {
   gap: 5rem;
   width: 100%;
   margin-bottom: 4rem;
-  padding: 2rem 0;
+  padding: 2rem;
   display: flex;
+}
+
+@media only screen and (width <= 50em) {
+  .container .nav {
+    justify-content: space-between;
+    margin-bottom: 3rem;
+  }
+}
+
+.container .nav__menuicon {
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  display: none !important;
+}
+
+@media only screen and (width <= 50em) {
+  .container .nav__menuicon {
+    z-index: 40;
+    display: block !important;
+  }
 }
 
 .container .nav__logo {
   height: 2rem;
 }
 
+@media only screen and (width <= 37.5em) {
+  .container .nav__logo img {
+    width: 12rem;
+  }
+}
+
 .container .nav__menu {
+  z-index: 20;
   flex: 1;
   justify-content: space-between;
   align-items: center;
+  transition: all .3s ease-in-out;
   display: flex;
 }
 
-.container .nav__menu a:link, .container .nav__menu a:visited {
+@media only screen and (width <= 50em) {
+  .container .nav__menu {
+    background: var(--almost-white);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 6rem;
+    width: 65%;
+    height: 100vh;
+    padding-top: 11rem;
+    position: fixed;
+    top: 0;
+    left: 100%;
+  }
+}
+
+.container .nav__menu a:link, .container .nav__menu a:visited, .container .nav__menu p {
   color: var(--medium-gray);
   font-size: 1.4rem;
   text-decoration: none;
@@ -57,6 +115,14 @@ body {
   list-style: none;
   display: flex;
   position: relative;
+}
+
+@media only screen and (width <= 50em) {
+  .container .nav__menu--options {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 4rem;
+  }
 }
 
 .container .nav__menu--options .features__sub, .container .nav__menu--options .company__sub {
@@ -87,15 +153,68 @@ body {
   position: absolute;
 }
 
-.container .nav__menu--options .features {
+@media only screen and (width <= 50em) {
+  .container .nav__menu--options .sub {
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+    position: relative;
+  }
+}
+
+.container .nav__menu--options .features, .container .nav__menu--options .company {
+  transition: all .3s ease-in-out;
   left: -7rem;
+}
+
+@media only screen and (width <= 50em) {
+  .container .nav__menu--options .features, .container .nav__menu--options .company {
+    height: 0;
+    padding-top: 0;
+    left: 0;
+    overflow: hidden;
+  }
 }
 
 .container .nav__menu--options .features__sub--ele img {
   margin-right: 1rem;
 }
 
-.container .nav__menu--options-ele a .img:first-child {
+@media only screen and (width <= 50em) {
+  .container .nav__menu--options .features__sub, .container .nav__menu--options .company__sub {
+    box-shadow: none;
+  }
+}
+
+.container .nav__menu--options .link {
+  display: block;
+}
+
+@media only screen and (width <= 50em) {
+  .container .nav__menu--options .link {
+    display: none;
+  }
+}
+
+.container .nav__menu--options .paraghrap {
+  display: none;
+}
+
+@media only screen and (width <= 50em) {
+  .container .nav__menu--options .paraghrap {
+    display: block;
+  }
+
+  .container .nav__menu--options-ele a:visited, .container .nav__menu--options-ele a:link, .container .nav__menu--options-ele p, .container .nav__menu--options-acc a:visited, .container .nav__menu--options-acc a:link, .container .nav__menu--options-acc p {
+    font-size: 2.6rem !important;
+  }
+}
+
+.container .nav__menu--options-ele a, .container .nav__menu--options-ele p, .container .nav__menu--options-acc a, .container .nav__menu--options-acc p {
+  cursor: pointer;
+}
+
+.container .nav__menu--options-ele a .img:first-child, .container .nav__menu--options-ele p .img:first-child, .container .nav__menu--options-acc a .img:first-child, .container .nav__menu--options-acc p .img:first-child {
   display: none;
 }
 
@@ -107,14 +226,50 @@ body {
   display: none;
 }
 
+.container .nav__menu--options-ele:hover p .img:first-child {
+  display: inline-block;
+}
+
+.container .nav__menu--options-ele:hover p .img:last-child {
+  display: none;
+}
+
 .container .nav__menu--options-ele:hover > .sub {
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
 }
 
-.container .nav__menu--options-ele:hover > a > .arrow {
-  background-color: #ff0;
+.container .nav__menu--options .drop__menu {
+  justify-content: center;
+  align-items: baseline;
+  gap: .6rem;
+  display: flex;
+}
+
+@media only screen and (width <= 50em) {
+  .container .nav__menu--options .drop__menu {
+    justify-content: flex-start;
+  }
+}
+
+.container .nav__menu--options-acc input {
+  opacity: 0;
+  display: none;
+}
+
+.container .nav__menu--options-acc input:checked ~ .features, .container .nav__menu--options-acc input:checked ~ .company {
+  height: auto;
+  padding-top: 2rem;
+  overflow: auto;
+}
+
+.container .nav__menu--options-acc input:checked ~ .features__menu > .drop__menu .img:first-child, .container .nav__menu--options-acc input:checked ~ .company__menu > .drop__menu .img:first-child {
+  display: inline-block;
+}
+
+.container .nav__menu--options-acc input:checked ~ .features__menu > .drop__menu .img:last-child, .container .nav__menu--options-acc input:checked ~ .company__menu > .drop__menu .img:last-child {
+  display: none;
 }
 
 .container .nav__menu--login {
@@ -123,18 +278,42 @@ body {
   display: flex;
 }
 
+@media only screen and (width <= 50em) {
+  .container .nav__menu--login {
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+  }
+}
+
 .container .nav__menu--login .btn {
   cursor: pointer;
+  color: var(--medium-gray);
   background-color: #0000;
   border: none;
   border-radius: 10px;
   padding: .8rem 1.2rem;
 }
 
+@media only screen and (width <= 50em) {
+  .container .nav__menu--login .btn {
+    font-size: 2.2rem;
+  }
+}
+
 .container .nav__menu--login .nav__menu--login-reg {
   border: none;
   border: 1px solid var(--medium-gray);
   transition: all .2s ease-in-out;
+}
+
+@media only screen and (width <= 50em) {
+  .container .nav__menu--login .nav__menu--login-reg {
+    border: 2px solid var(--almost-black);
+    width: 70%;
+    padding: 1.6rem;
+  }
 }
 
 .container .nav__menu--login .nav__menu--login-reg:hover {
@@ -150,8 +329,16 @@ body {
 .container .hero__main {
   grid-template-columns: 1fr 1fr;
   column-gap: 5rem;
+  height: 78vh;
   margin: 0 auto;
   display: grid;
+}
+
+@media only screen and (width <= 50em) {
+  .container .hero__main {
+    grid-template-rows: 75vw 1fr;
+    grid-template-columns: 1fr;
+  }
 }
 
 .container .hero__main--content {
@@ -161,16 +348,47 @@ body {
   display: flex;
 }
 
+@media only screen and (width <= 37.5em) {
+  .container .hero__main--content {
+    padding: 6rem 0 0;
+  }
+}
+
+@media only screen and (width <= 50em) {
+  .container .hero__main--content {
+    align-items: center;
+  }
+}
+
 .container .hero__main--content--title h1 {
   font-size: 7rem;
+}
+
+@media only screen and (width <= 37.5em) {
+  .container .hero__main--content--title h1 {
+    font-size: 4.5rem;
+  }
 }
 
 .container .hero__main--content--title h1 span {
   display: block;
 }
 
+@media only screen and (width <= 50em) {
+  .container .hero__main--content--title h1 span {
+    display: inline-block;
+  }
+}
+
 .container .hero__main--content--desc {
   padding-right: 3rem;
+}
+
+@media only screen and (width <= 37.5em) {
+  .container .hero__main--content--desc {
+    text-align: center;
+    padding: 0 3rem;
+  }
 }
 
 .container .hero__main--content--desc p {
@@ -179,8 +397,20 @@ body {
   line-height: 1.5;
 }
 
+@media only screen and (width <= 37.5em) {
+  .container .hero__main--content--desc p {
+    font-size: 2rem;
+  }
+}
+
 .container .hero__main--content--more {
   margin-top: 2rem;
+}
+
+@media only screen and (width <= 37.5em) {
+  .container .hero__main--content--more {
+    margin-top: 0;
+  }
 }
 
 .container .hero__main--content--more button {
@@ -190,33 +420,58 @@ body {
   border-radius: 15px;
   padding: 1.4rem 2.6rem;
   font-size: 1.6rem;
+  font-weight: 700;
+}
+
+@media only screen and (width <= 37.5em) {
+  .container .hero__main--content--more button {
+    padding: 2.4rem 3.6rem;
+    font-size: 2.4rem;
+  }
 }
 
 .container .hero__main--content--brands {
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  width: 100%;
   margin-top: auto;
   display: flex;
 }
 
+@media only screen and (width <= 37.5em) {
+  .container .hero__main--content--brands img {
+    width: 8rem;
+  }
+}
+
 .container .hero__img {
+  background-image: url("image-hero-desktop.03fcb46b.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
   justify-content: end;
   display: flex;
 }
 
-.container .hero__img img {
-  width: 90%;
+@media only screen and (width <= 50em) {
+  .container .hero__img {
+    background-image: url("image-hero-mobile.4c761148.png");
+    background-position: 0;
+    grid-row: 1;
+  }
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
-.drop__menu {
-  justify-content: center;
-  align-items: baseline;
-  gap: .6rem;
-  display: flex;
+.overlay {
+  z-index: 10;
+  background-color: #1414147b;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
 }
 
 /*# sourceMappingURL=index.b2625c6b.css.map */

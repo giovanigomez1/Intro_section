@@ -12,40 +12,93 @@
 }
 
 
+// Responsive Breakpoints
+$bp-largest: 75em; // 1200px
+$bp-large:62.5em; // 1000px
+$bp-medium: 50em; // 800px
+$bp-small: 37.5em; // 600px
+
+
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+  @media only screen and (max-width: $bp-largest){
+    font-size: 50%;
+  }
 }
 
 
 body {
   font-family: 'Epilogue', sans-serif;
   background-color: var(--almost-white);
+  position: relative;
 }
 
 
 .container {
+  position: relative;
   max-width: 122rem;
   margin: 0 auto;
+  padding: 0;
+  overflow-x: hidden;
+  height: 100vh;
   // background-color: blueviolet;
   .nav {
     display: flex;
     align-items: center;
     width: 100%;
     gap: 5rem;
-    padding: 2rem 0;
+    padding: 2rem;
     margin-bottom: 4rem;
+    @media only screen and (max-width: $bp-medium){
+      justify-content: space-between;
+      margin-bottom: 3rem;
+    }
+    &__menuicon {
+      display: none !important;
+      width: 4rem;
+      height: 4rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      @media only screen and (max-width: $bp-medium){
+        z-index: 40;
+        display: block !important;
+      }
+    }
     &__logo {
       height: 2rem;
+      & img {
+        @media only screen and (max-width: $bp-small){
+          width: 12rem;
+        }
+      }
     }
     &__menu {
       display: flex;
       align-items: center;
-      // background-color: orangered;
       flex: 1;
       justify-content: space-between;
+      z-index: 20;
+      transition: all .3s ease-in-out;
+      @media only screen and (max-width: $bp-medium){
+        position: fixed;
+        background: var(--almost-white);
+        flex-direction: column;
+        height: 100vh;
+        top: 0;
+        left: 100%;
+        padding-top: 11rem;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 65%;
+        gap: 6rem;
+
+      }
       & a:link,
-      & a:visited {
+      & a:visited,
+      p {
         text-decoration: none;
         color: var(--medium-gray);
         font-size: 1.4rem;
@@ -56,6 +109,12 @@ body {
         gap: 3rem;
         list-style: none;
         position: relative;
+        @media only screen and (max-width: $bp-medium){
+          flex-direction: column;
+          align-items: flex-start;
+          padding-left: 4rem;
+        }
+
         .features__sub, .company__sub {
           list-style: none;
           background-color: var(--almost-white);
@@ -86,10 +145,25 @@ body {
           pointer-events: none;
           background-color: transparent;
           transition: all .2s ease-in-out;
+          @media only screen and (max-width: $bp-medium){
+           opacity: 1;
+           pointer-events: all;
+           position: relative;
+           visibility: visible;
+          }
+
         }
-        .features {
+        .features, .company {
           left: -7rem;
+          transition: all .3s ease-in-out;
+          @media only screen and (max-width: $bp-medium){
+            left: 0;
+            height: 0;
+            overflow: hidden;
+            padding-top: 0;
+           }
         }
+        
         .features__sub {
           &--ele {
             & img {
@@ -97,8 +171,36 @@ body {
             }
           }
         }
-        &-ele{  
-          & a {
+        .features__sub,
+        .company__sub {
+          @media only screen and (max-width: $bp-medium){
+            box-shadow: none;
+           }
+        }
+        .link {
+          display: block;
+          @media only screen and (max-width: $bp-medium){
+            display: none;
+          }
+        }
+        .paraghrap {
+          display: none;
+          @media only screen and (max-width: $bp-medium){
+            display: block;
+          }
+        }
+        &-ele, 
+        &-acc{
+          & a:visited,
+          & a:link,
+          & p {
+            @media only screen and (max-width: $bp-medium){
+              font-size: 2.6rem !important;
+            }
+          }
+          & a, 
+          & p {
+            cursor: pointer;
             .img:first-child {
               display: none;
             }
@@ -113,31 +215,91 @@ body {
               display: none;
             }
           }
+          & p {
+            .img:first-child {
+              display: inline-block;
+            }
+            .img:last-child{
+              display: none;
+            }
+          }
         }
         &-ele:hover > .sub {
           visibility: visible;
           opacity: 1;
           pointer-events: auto;
         }
-        &-ele:hover > a > .arrow {
-          background-color: yellow;
+
+        .drop__menu {
+          display: flex;
+          justify-content: center;
+          align-items: baseline;
+          gap: .6rem;
+          @media only screen and (max-width: $bp-medium){
+            justify-content: flex-start;
+          }
         }
+
+        &-acc {
+          & input {
+            display: none;
+            opacity: 0;
+          }
+
+          & input:checked ~ .features, 
+          & input:checked ~ .company {
+            // background-color: white;
+            height: auto;
+            overflow :auto;
+            padding-top: 2rem;
+          }
+       
+          & input:checked ~ .features__menu > .drop__menu, 
+          & input:checked ~ .company__menu > .drop__menu {
+            .img:first-child {
+              display: inline-block;
+            }
+            .img:last-child{
+              display: none;
+            }
+          }
+
+
+        }
+        // &-ele:hover > a > .arrow {
+        //   background-color: yellow;
+        // }
       }
       &--login {
         display: flex;
         align-items: center;
         gap: 3rem;
+        @media only screen and (max-width: $bp-medium){
+          width: 100%;
+          justify-content: center;
+          flex-direction: column;  
+          gap: 2rem;
+        }
         .btn {  
           background-color: transparent;
           padding: .8rem 1.2rem;
           border-radius: 10px;
           cursor: pointer;
           border: none;
+          color: var(--medium-gray);
+          @media only screen and (max-width: $bp-medium){
+            font-size: 2.2rem;
+          }
         }
         .nav__menu--login-reg {
           border: none;
           border: 1px solid var(--medium-gray);
           transition: all .2s ease-in-out;
+          @media only screen and (max-width: $bp-medium){
+            width: 70%;
+            padding: 1.6rem;
+            border: 2px solid var(--almost-black);  
+          }
         }
         .nav__menu--login-reg:hover {
           border: none;
@@ -155,51 +317,100 @@ body {
       grid-template-columns: 1fr 1fr;
       margin: 0 auto;
       column-gap: 5rem;
+      // min-height: 69vh;
+      height: 78vh;
+
+   
+      @media only screen and (max-width: $bp-medium){
+        grid-template-columns: 1fr;
+        grid-template-rows: 75vw 1fr;
+      }
+
       &--content {
         padding: 8rem 2rem 0;
         display: flex;
         flex-direction: column;
         gap: 4.2rem;
+        @media only screen and (max-width: $bp-small){
+          padding: 6rem 0 0;
+        }
+        @media only screen and (max-width: $bp-medium){
+          align-items: center;
+        }
         &--title {
           & h1 {
             font-size: 7rem;
+            @media only screen and (max-width: $bp-small){
+              font-size: 4.5rem;
+            }
             & span {
               display: block;
+              @media only screen and (max-width: $bp-medium){
+                display: inline-block;
+              }
             }
           }
         }
         &--desc {
           padding-right: 3rem;
+          @media only screen and (max-width: $bp-small){
+            padding: 0 3rem;
+            text-align: center;
+          }
           & p {
             font-size: 1.6rem;
             color: var(--medium-gray);
             line-height: 1.5;
+            @media only screen and (max-width: $bp-small){
+              font-size: 2rem;
+            }
           }
         }
         &--more {
           margin-top: 2rem;
+          @media only screen and (max-width: $bp-small){
+            margin-top: 0;
+          }
           & button {
+            @media only screen and (max-width: $bp-small){
+              padding: 2.4rem 3.6rem;  
+              font-size: 2.4rem;
+
+            }
             padding: 1.4rem 2.6rem;
             font-size: 1.6rem;
             background-color: var(--almost-black);
             border: none;
             color: var(--almost-white);
             border-radius: 15px;
+            font-weight: 700;
           }
         }
         &--brands {
           margin-top: auto;
           display: flex;
           align-items: center;
-          justify-content: space-between;
+          justify-content: space-around;
+          width: 100%;
+          & img {
+            @media only screen and (max-width: $bp-small){
+              width: 8rem;
+            }
+          }
         }
       }    
     }
     &__img {
       display: flex;
       justify-content: end;
-      & img {
-        width: 90%;
+      background-image: url('../images/image-hero-desktop.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      @media only screen and (max-width: $bp-medium){
+        grid-row: 1;
+        background-image: url('../images/image-hero-mobile.png');
+        background-position: left;
       }
     }
   }
@@ -212,12 +423,15 @@ body {
 
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
-.drop__menu {
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
-  gap: .6rem;
+
+.overlay {
+  width: 100%;
+  height: 100vh;
+  background-color: hsla(0, 0%, 8%, 0.484);
+  position: absolute;
+  top: 0;
+  z-index: 10;
 }
